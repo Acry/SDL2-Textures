@@ -1,4 +1,4 @@
-###This is a small C-SDL series about procedural textures.
+## This is a small C-SDL series about procedural textures.
 
 **The Code demonstrates how to...**  
 

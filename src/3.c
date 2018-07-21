@@ -57,7 +57,7 @@ double 	smoothNoise(double , double, double);
 void 	generateNoise(void);
 double 	turbulence(double, double, double, double);
 float  	fTimeDelta		(void); // frame time
-float 	fTime(void);		(void); // runtime
+float 	fTime(void);			// runtime
 SDL_Color HSLtoRGB(HSL_Color);
 //END	FUNCTION PROTOTYPES
 
