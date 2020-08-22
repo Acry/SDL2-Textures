@@ -6,7 +6,6 @@
 #include <SDL2/SDL_image.h>
 
 extern SDL_Window   *Window;
-extern SDL_Renderer *Renderer;
 
 void init (void);
 void exit_(void);

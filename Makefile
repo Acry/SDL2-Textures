@@ -1,11 +1,17 @@
-CFLAGS   = -Wall -Wextra -mtune=native `sdl2-config --cflags`
+# libsdl 2 flags
+CFLAGS   = -Wall -Wextra -mtune=native -no-pie `sdl2-config --cflags`
 LDFLAGS  = `sdl2-config --libs` -lSDL2_image -lm
 
+# libsdl flags
+CFLAGS2   = -Wall -Wextra -mtune=native `sdl-config --cflags`
+LDFLAGS2  = `sdl-config --libs` -lSDL_image -lm
 .SUFFIXES:
 .SUFFIXES: .c .o
 
+# no need to build 4a1 - it was for testing purposes like texture_generation
+
 srcdir	 =src/
-TARGETS	 = texture_generation 1 1b 1c 1d 1e 1f 1g 1h 2 3
+TARGETS	 = texture_generation 1 1b 1c 1d 1e 1f 1g 1h 2 3 4a 4a1 4b
 
 .PHONY: all
 all: $(TARGETS)
@@ -52,6 +58,18 @@ texture_generation: $(srcdir)helper.c $(srcdir)main.c
 
 # 3D Random Noise
 3: $(srcdir)helper.c $(srcdir)3.c
+	$(CC) $(CFLAGS) -o $@ $+ $(LDFLAGS)
+
+# 2d LUT deformations and tunnels 1 - Repeat Texture / tiling
+4a: $(srcdir)helper_soft.c $(srcdir)4a.c
+	$(CC) $(CFLAGS) -o $@ $+ $(LDFLAGS)
+
+# SDL 1 arithmetic pattern
+4a1: $(srcdir)4a1.c
+	$(CC) $(CFLAGS2) -o $@ $+ $(LDFLAGS2)
+
+# 2d LUT deformations and tunnels 1 - deform texture
+4b: $(srcdir)helper_soft.c $(srcdir)4b.c
 	$(CC) $(CFLAGS) -o $@ $+ $(LDFLAGS)
 
 .PHONY: clean
